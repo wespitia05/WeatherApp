@@ -23,7 +23,7 @@ class WeatherApp(QWidget):
         # button to retrieve weather info
         self.get_weather_button = QPushButton("Get Weather", self)
         # temperature lable will display temperature of city
-        self.temp_label = QLabel("40°F, self")
+        self.temp_label = QLabel("40°F", self)
         # emoji label will show type of weather
         self.emoji_label = QLabel("🌤️", self)
         # brief description of type of weather
@@ -63,6 +63,34 @@ class WeatherApp(QWidget):
         self.temp_label.setObjectName("temp_label")
         self.emoji_label.setObjectName("emoji_label")
         self.description_label.setObjectName("description_label")
+
+        self.setStyleSheet("""
+            QLabel, QPushButton {
+                font-family: Calibri;
+            }
+            QLabel#city_label {
+                font-size: 40px;
+                font-style: italic;
+            }
+            QLineEdit#city_input {
+                font-size: 40px;
+                padding: 5px;
+            }
+            QPushButton#get_weather_button {
+                font-size: 30px;
+                font-weight: bold;
+            }
+            QLabel#temp_label {
+                font-size: 75px;
+            }
+            QLabel#emoji_label {
+                font-size: 100px;
+                font-family: Segoe UI emoji;
+            }
+            QLabel#description_label {
+                font-size: 50px;
+            }
+        """)
 
 # when running python file directly
 if __name__ == "__main__":
