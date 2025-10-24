@@ -16,6 +16,18 @@ class WeatherApp(QWidget):
     def __init__(self):
         # calls the parent class initializer
         super().__init__()
+        # label prompts user to enter name of city
+        self.city_label = QLabel("Enter city name: ", self)
+        # input box that allows user to type name of city
+        self.city_input = QLineEdit(self)
+        # button to retrieve weather info
+        self.get_weather_button = QPushButton("Get Weather", self)
+        # temperature lable will display temperature of city
+        self.temp_label = QLabel("40°F, self")
+        # emoji label will show type of weather
+        self.emoji_label = QLabel("🌤️", self)
+        # brief description of type of weather
+        self.description_label = QLabel("Partly Sunny", self)
 
 # when running python file directly
 if __name__ == "__main__":
