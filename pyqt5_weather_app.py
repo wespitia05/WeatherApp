@@ -49,6 +49,13 @@ class WeatherApp(QWidget):
         # passes in our vertical layout manager to set as the layout
         self.setLayout(vbox)
 
+        # aligns all widgets to be in center of the window
+        self.city_label.setAlignment(Qt.AlignCenter)
+        self.city_input.setAlignment(Qt.AlignCenter)
+        self.temp_label.setAlignment(Qt.AlignCenter)
+        self.emoji_label.setAlignment(Qt.AlignCenter)
+        self.description_label.setAlignment(Qt.AlignCenter)
+
 # when running python file directly
 if __name__ == "__main__":
     # creates the Qt application and handles any arguments
