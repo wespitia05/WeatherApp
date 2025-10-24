@@ -92,6 +92,18 @@ class WeatherApp(QWidget):
             }
         """)
 
+    # this function will handle getting the weather information from the api
+    def get_weather(self):
+        pass
+
+    # this function will handle displaying an error message when needed
+    def display_error(self):
+        pass
+
+    # this function will handle displaying the weather after retrieving it from the api
+    def display_weather(self):
+        pass
+
 # when running python file directly
 if __name__ == "__main__":
     # creates the Qt application and handles any arguments
