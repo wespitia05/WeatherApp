@@ -35,6 +35,20 @@ class WeatherApp(QWidget):
         # changes name of window title
         self.setWindowTitle("Weather App")
 
+        # declares vbox will have a vertical box layout
+        vbox = QVBoxLayout()
+
+        # adds our widgets to the vbox 
+        vbox.addWidget(self.city_label)
+        vbox.addWidget(self.city_input)
+        vbox.addWidget(self.get_weather_button)
+        vbox.addWidget(self.temp_label)
+        vbox.addWidget(self.emoji_label)
+        vbox.addWidget(self.description_label)
+
+        # passes in our vertical layout manager to set as the layout
+        self.setLayout(vbox)
+
 # when running python file directly
 if __name__ == "__main__":
     # creates the Qt application and handles any arguments
