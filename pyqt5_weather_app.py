@@ -28,6 +28,12 @@ class WeatherApp(QWidget):
         self.emoji_label = QLabel("🌤️", self)
         # brief description of type of weather
         self.description_label = QLabel("Partly Sunny", self)
+        self.initUI()
+    
+    # this is where we will be designing the user interface
+    def initUI(self):
+        # changes name of window title
+        self.setWindowTitle("Weather App")
 
 # when running python file directly
 if __name__ == "__main__":
