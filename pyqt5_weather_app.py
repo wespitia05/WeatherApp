@@ -23,11 +23,11 @@ class WeatherApp(QWidget):
         # button to retrieve weather info
         self.get_weather_button = QPushButton("Get Weather", self)
         # temperature lable will display temperature of city
-        self.temp_label = QLabel("40°F", self)
+        self.temp_label = QLabel(self)
         # emoji label will show type of weather
-        self.emoji_label = QLabel("🌤️", self)
+        self.emoji_label = QLabel(self)
         # brief description of type of weather
-        self.description_label = QLabel("Partly Sunny", self)
+        self.description_label = QLabel(self)
         self.initUI()
     
     # this is where we will be designing the user interface
@@ -96,7 +96,19 @@ class WeatherApp(QWidget):
 
     # this function will handle getting the weather information from the api
     def get_weather(self):
-        print("you get weather")
+        # our weather api key
+        api_key = "0b27dee62b5909ebbbf9788a2e85e2b2"
+        # captures city text inputted to look up
+        city = self.city_input.text()
+        # url link from the openweathermap website which will return to us the weather from the city inputted
+        url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
+
+        # response makes the api request with our url
+        response = requests.get(url)
+        # once we get our data, we convert to json
+        data = response.json()
+
+        print(data)
 
     # this function will handle displaying an error message when needed
     def display_error(self):
