@@ -108,15 +108,17 @@ class WeatherApp(QWidget):
         # once we get our data, we convert to json
         data = response.json()
 
-        print(data)
+        if data["cod"] == 200:
+            print("api request successful")
+            self.display_weather(data)
 
     # this function will handle displaying an error message when needed
     def display_error(self):
         pass
 
     # this function will handle displaying the weather after retrieving it from the api
-    def display_weather(self):
-        pass
+    def display_weather(self, data):
+        print(data)
 
 # when running python file directly
 if __name__ == "__main__":
