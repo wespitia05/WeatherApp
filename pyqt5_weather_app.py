@@ -103,14 +103,42 @@ class WeatherApp(QWidget):
         # url link from the openweathermap website which will return to us the weather from the city inputted
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 
-        # response makes the api request with our url
-        response = requests.get(url)
-        # once we get our data, we convert to json
-        data = response.json()
+        # surround our code in a try block that may raise any exceptions
+        try:
+            # response makes the api request with our url
+            response = requests.get(url)
+            # this method will raise an exception if there is any http errors
+            response.raise_for_status()
+            # once we get our data, we convert to json
+            data = response.json()
 
-        if data["cod"] == 200:
-            print("api request successful")
-            self.display_weather(data)
+            # if our request code = 200 it means our api request was successful and we will display our weather data
+            if data["cod"] == 200:
+                print("api request successful")
+                self.display_weather(data)
+
+        except requests.exceptions.HTTPError as HTTPError:
+            match response.status_code:
+                case 400:
+                    print("bad request\nplease check your input")
+                case 401:
+                    print("unauthorized\ninvalid api key")
+                case 403:
+                    print("forbidden\naccess is denied")
+                case 404:
+                    print("not found\ncity not found")
+                case 500:
+                    print("internal server error\nplease try again later")
+                case 502:
+                    print("bad gateway\ninvalid response from the server")
+                case 503:
+                    print("service unavailable\nserver is down")
+                case 504:
+                    print("gateway timeout\nno response from the server")
+                case _:
+                    print(f"HTTP error occured\n{HTTPError}")
+        except requests.exceptions.RequestException:
+            pass
 
     # this function will handle displaying an error message when needed
     def display_error(self):
