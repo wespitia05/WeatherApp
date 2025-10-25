@@ -92,9 +92,11 @@ class WeatherApp(QWidget):
             }
         """)
 
+        self.get_weather_button.clicked.connect(self.get_weather)
+
     # this function will handle getting the weather information from the api
     def get_weather(self):
-        pass
+        print("you get weather")
 
     # this function will handle displaying an error message when needed
     def display_error(self):
