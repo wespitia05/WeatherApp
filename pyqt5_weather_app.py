@@ -172,7 +172,11 @@ class WeatherApp(QWidget):
     # this function will handle displaying the weather after retrieving it from the api
     def display_weather(self, data):
         temperature_k = data["main"]["temp"]
-        print(temperature_k)
+        temperature_c = temperature_k - 273.15
+        temperature_f = (temperature_k * 9/5) - 459.67
+        print(f"Kelvin: {temperature_k:.2f}")
+        print(f"Celsius: {temperature_c:.2f}")
+        print(f"Fahrenheit: {temperature_f:.2f}")
 
 # when running python file directly
 if __name__ == "__main__":
