@@ -184,6 +184,10 @@ class WeatherApp(QWidget):
         print(f"celsius: {temperature_c:.2f}°C")
         print(f"fahrenheit: {temperature_f:.2f}°F")
 
+        # here we will access the weather id number with key "weather" at index [0] and at key "id"
+        weather_id = data["weather"][0]["id"]
+        print(f"weather id: {weather_id}")
+
         # here we will access the weather description with key "weather" at index [0] and at key "description"
         weather_description = data["weather"][0]["description"]
         print(f"weather description: {weather_description}")
@@ -196,6 +200,18 @@ class WeatherApp(QWidget):
         self.temp_label.setText(f"{temperature_f:.2f}°F")
         # displays the weather description
         self.description_label.setText(weather_description)
+
+    # this function will handle getting a weather id and turning it into an emoji
+        # 200s = thunderstorm
+        # 300s = drizzle
+        # 500s = rain
+        # 600s = snow
+        # 700s = atmosphere
+        # 800  = clear
+        # 801-804 = clouds
+    @staticmethod # belongs to class but doesnt require an instant specific data or method; used more as a utility tool
+    def get_weather_emoji(weather_id):
+        pass
 
 # when running python file directly
 if __name__ == "__main__":
