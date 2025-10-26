@@ -170,6 +170,10 @@ class WeatherApp(QWidget):
         self.temp_label.setStyleSheet("font-size: 30px;")
         self.temp_label.setText(message)
 
+        # clears both the emoji and description after displaying an error message
+        self.emoji_label.clear()
+        self.description_label.clear()
+
     # this function will handle displaying the weather after retrieving it from the api
     def display_weather(self, data):
         # resets font size because if we print an error, then the temperature, the temperature appears with 30px font size
