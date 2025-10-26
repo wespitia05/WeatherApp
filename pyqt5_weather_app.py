@@ -198,6 +198,8 @@ class WeatherApp(QWidget):
 
         # displays only fahrenheit in the application
         self.temp_label.setText(f"{temperature_f:.2f}°F")
+        # displays the weather emoji based on the weather id value
+        self.emoji_label.setText(self.get_weather_emoji(weather_id))
         # displays the weather description
         self.description_label.setText(weather_description)
 
@@ -211,7 +213,29 @@ class WeatherApp(QWidget):
         # 801-804 = clouds
     @staticmethod # belongs to class but doesnt require an instant specific data or method; used more as a utility tool
     def get_weather_emoji(weather_id):
-        pass
+        # here we display the different emojis for the different weather id's
+        if 200 <= weather_id <= 232:
+            return "⛈️"
+        elif 300 <= weather_id <= 321:
+            return "🌦️"
+        elif 500 <= weather_id <= 531:
+            return "🌧️"
+        elif 600 <= weather_id <= 622:
+            return "❄️"
+        elif 701 <= weather_id <= 741:
+            return "🌫️"
+        elif weather_id == 762:
+            return "🌋"
+        elif weather_id == 771:
+            return "💨"
+        elif weather_id == 781: 
+            return "🌪️"
+        elif weather_id == 800:
+            return "☀️"
+        elif 801 <= weather_id <= 804:
+            return "☁️"
+        else:
+            return ""
 
 # when running python file directly
 if __name__ == "__main__":
