@@ -100,6 +100,7 @@ class WeatherApp(QWidget):
         api_key = "0b27dee62b5909ebbbf9788a2e85e2b2"
         # captures city text inputted to look up
         city = self.city_input.text()
+        print(f"{city} weather:")
         # url link from the openweathermap website which will return to us the weather from the city inputted
         url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}"
 
@@ -173,18 +174,28 @@ class WeatherApp(QWidget):
     def display_weather(self, data):
         # resets font size because if we print an error, then the temperature, the temperature appears with 30px font size
         self.temp_label.setStyleSheet("font-size: 75px;")
-        
+
         # grabs temperature from data (located in main sub level temp)
         temperature_k = data["main"]["temp"]
         temperature_c = temperature_k - 273.15 # converts to celsius
         temperature_f = (temperature_k * 9/5) - 459.67 # converts to fahrenheit
         # displays temperatures to the secondth decimal place
-        print(f"Kelvin: {temperature_k:.2f}°K")
-        print(f"Celsius: {temperature_c:.2f}°C")
-        print(f"Fahrenheit: {temperature_f:.2f}°F")
+        print(f"kelvin: {temperature_k:.2f}°K")
+        print(f"celsius: {temperature_c:.2f}°C")
+        print(f"fahrenheit: {temperature_f:.2f}°F")
+
+        # here we will access the weather description with key "weather" at index [0] and at key "description"
+        weather_description = data["weather"][0]["description"]
+        print(f"weather description: {weather_description}")
+
+        # here we will access the humidity percentage and print into the console
+        humidity_percentage = data["main"]["humidity"]
+        print(f"humidity: {humidity_percentage}%")
 
         # displays only fahrenheit in the application
         self.temp_label.setText(f"{temperature_f:.2f}°F")
+        # displays the weather description
+        self.description_label.setText(weather_description)
 
 # when running python file directly
 if __name__ == "__main__":
