@@ -32,7 +32,7 @@ pip install PyQt5 requests
 
 ## Screenshots
 ![Weather App Screenshot](weather_app_ss.png)
-* Screenshot of the output for the digital clock.
+* Screenshot of the output for the weather app.
 
 ## Running
 1) Put your **OpenWeatherMap API key** in the code (current script uses a literal string).
