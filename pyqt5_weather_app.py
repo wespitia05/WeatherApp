@@ -117,6 +117,7 @@ class WeatherApp(QWidget):
                 print("api request successful")
                 self.display_weather(data)
 
+        # catches out http errors in different cases based on status code
         except requests.exceptions.HTTPError as HTTPError:
             match response.status_code:
                 case 400:
@@ -137,8 +138,18 @@ class WeatherApp(QWidget):
                     print("gateway timeout\nno response from the server")
                 case _:
                     print(f"HTTP error occured\n{HTTPError}")
-        except requests.exceptions.RequestException:
-            pass
+        # catches any connection errors
+        except requests.exceptions.ConnectionError:
+            print("connection error:\ncheck your internet connection")
+        # ctaches any time out errors
+        except requests.exceptions.Timeout:
+            print("timeout error:\nthe request timed out")
+        # catches any too many redirect errors
+        except requests.exceptions.TooManyRedirects:
+            print("too many redirects:\ncheck the url")
+        # catches any other potential error
+        except requests.exceptions.RequestException as req_error:
+            print(f"request error:\n{req_error}")
 
     # this function will handle displaying an error message when needed
     def display_error(self):
