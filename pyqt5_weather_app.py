@@ -171,12 +171,20 @@ class WeatherApp(QWidget):
 
     # this function will handle displaying the weather after retrieving it from the api
     def display_weather(self, data):
+        # resets font size because if we print an error, then the temperature, the temperature appears with 30px font size
+        self.temp_label.setStyleSheet("font-size: 75px;")
+        
+        # grabs temperature from data (located in main sub level temp)
         temperature_k = data["main"]["temp"]
-        temperature_c = temperature_k - 273.15
-        temperature_f = (temperature_k * 9/5) - 459.67
-        print(f"Kelvin: {temperature_k:.2f}")
-        print(f"Celsius: {temperature_c:.2f}")
-        print(f"Fahrenheit: {temperature_f:.2f}")
+        temperature_c = temperature_k - 273.15 # converts to celsius
+        temperature_f = (temperature_k * 9/5) - 459.67 # converts to fahrenheit
+        # displays temperatures to the secondth decimal place
+        print(f"Kelvin: {temperature_k:.2f}°K")
+        print(f"Celsius: {temperature_c:.2f}°C")
+        print(f"Fahrenheit: {temperature_f:.2f}°F")
+
+        # displays only fahrenheit in the application
+        self.temp_label.setText(f"{temperature_f:.2f}°F")
 
 # when running python file directly
 if __name__ == "__main__":
